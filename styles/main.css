@@ -37,11 +37,6 @@ html, body {
     font-weight:bold;
 }
 
-#colors {
-    width:330px;
-    height:330px;
-    position:relative;
-}
 .color {
     width:100px;
     height:100px;
