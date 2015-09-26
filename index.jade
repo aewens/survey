@@ -1,12 +1,28 @@
 doctype html
 title Survey
+link(href="//cdn.jsdelivr.net/font-hack/2.013/css/hack.min.css",rel="stylesheet")
 link(href="styles/main.css", rel="stylesheet")
 body
     .survey
         ul
             li
-                header 1.
-                section Question
+                header 1. Pick a color
+                section#colors.options
+                    #red.color
+                    #orange.color
+                    #yellow.color
+                    #green.color
+                    #blue.color
+                    #purple.color
+                    #brown.color
+                    #pink.color
+                    #grey.color
+                hr
+                section#others.options
+                    #light.color
+                    #normal.color
+                    #dark.color
+                .clear
             li
                 header 2.
                 section Question
@@ -15,5 +31,23 @@ body
                 section Question
             li
                 header 4.
+                section Question
+            li
+                header 5.
+                section Question
+            li
+                header 6.
+                section Question
+            li
+                header 7.
+                section Question
+            li
+                header 8.
+                section Question
+            li
+                header 9.
+                section Question
+            li
+                header 10.
                 section Question
     script(data-main="bin/main", src="vendor/require.js")
