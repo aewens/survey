@@ -14,7 +14,7 @@ require [
 
     luminance = (color, lum) ->
         rgb = color.replace(/\s/g,"").match(/^rgba?\((\d+),(\d+),(\d+)/i)
-        
+
         R = rgb[1]
         G = rgb[2]
         B = rgb[3]
@@ -26,7 +26,7 @@ require [
         R = if R < 255 then R else 255
         G = if G < 255 then G else 255
         B = if B < 255 then B else 255
-    	
+
         RR = if R.toString(16).length is 1
             "0"+R.toString(16)
         else
@@ -39,12 +39,23 @@ require [
             "0"+B.toString(16)
         else
             B.toString(16)
-        
+
         return "#"+RR+GG+BB
-        
+
+    $("li:not(#assign)").hide()
+
+    $("#name").on "keyup", (e) ->
+        disable = !($(this).val().length is 8)
+        if disable
+            $("#name").removeClass("active")
+            $("li:not(#assign)").slideUp()
+        else
+            $("#name").addClass("active")
+            $(this).parent().siblings().slideDown()
+
     for i in [0...36]
         $("<div/>",{"data-id":i}).addClass("cell").appendTo(".grid")
-        
+
     $(".cell").on "click", (e) ->
         $(this).toggleClass("select")
 
@@ -58,15 +69,14 @@ require [
         color = $(this).css("background")
         $hr = $(this).parent().siblings("hr")
         $shades = $(this).parent().siblings(".shades")
-        
-        $hr.show()
-        $shades.show()
-        
+
+        $hr.slideDown()
+        $shades.slideDown()
+
         $light = $shades.children("#light")
         $normal = $shades.children("#normal")
         $dark = $shades.children("#dark")
-        
+
         $normal.css("background", color)
         $light.css("background", luminance(color, 50))
         $dark.css("background", luminance(color, -50))
-        

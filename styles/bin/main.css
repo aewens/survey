@@ -30,6 +30,25 @@ body .survey ul li {
   padding: 5px;
   box-shadow: 0 5px 6px -6px #000;
 }
+html .survey ul li#assign,
+body .survey ul li#assign {
+  width: 100%;
+  padding: 0;
+}
+html .survey ul li#assign #name,
+body .survey ul li#assign #name {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  margin: 0;
+  text-align: center;
+  color: #ff4136;
+}
+html .survey ul li#assign #name.active,
+body .survey ul li#assign #name.active {
+  color: #2ecc40;
+}
 html .survey ul li:last-child,
 body .survey ul li:last-child {
   margin-bottom: 0;

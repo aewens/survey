@@ -1,35 +1,48 @@
-* 
+*
     margin 0
     padding 0
     list-style-type none
     box-sizing border-box
 
-html, body 
+html, body
     width 100%
     background #ddd
     font-family Hack, monospace
-    .survey 
+    .survey
         width 360px
         height 100%
         background #eee
         margin 20px auto
         box-shadow 0 5px 12px -4px #000
-        ul 
+        ul
             width 100%
             padding 10px
-            li 
+            li
                 background #fff
                 margin-bottom 20px
                 padding 5px
                 box-shadow 0 5px 6px -6px #000
+                &#assign
+                    width 100%
+                    padding 0
+                    #name
+                        width 100%
+                        border none
+                        outline none
+                        padding 8px 10px
+                        margin 0
+                        text-align center
+                        color #ff4136
+                        &.active
+                            color #2ecc40
                 &:last-child
                     margin-bottom 0
-                .clear 
+                .clear
                     clear both
-                header 
+                header
                     font-weight bold
                 section
-                    .color 
+                    .color
                         width 100px
                         height 100px
                         margin 5px
