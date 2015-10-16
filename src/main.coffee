@@ -42,7 +42,32 @@ require [
 
         return "#"+RR+GG+BB
 
-    $("li:not(#assign)").hide()
+    demand = ($el) ->
+        dmd = $el.attr("dmd")
+        return ["\n"] if dmd is "ignore"
+
+        switch dmd
+            when "name"
+                return [$el.find("#name").val()]
+            when "color"
+                ret = []
+                $el.find(".select").each ->
+                    ret.push $(this).attr("data-id")
+                return ret
+            when "grid"
+                ret = []
+                $el.find(".select").each ->
+                    ret.push $(this).attr("data-id")
+                return ret
+            when "select"
+                ret = []
+                $el.find(".result").each ->
+                    ret.push $(this).text()
+                return ret
+
+    # done = ($el) ->
+
+    # $("li:not(#assign)").hide()
 
     $("#name").on "keyup", (e) ->
         disable = !($(this).val().length is 8)
@@ -57,14 +82,27 @@ require [
         $("<div/>",{"data-id":i}).addClass("cell").appendTo(".grid")
 
     $(".cell").on "click", (e) ->
+        $parent = $(this).parent().parent()
+        $parent.removeClass("done")
         $(this).toggleClass("select")
+        $parent.addClass("done") if $parent.find(".select").length >= 3
 
-    $(".shades, hr").hide()
+    $(".shades, hr, .result").hide()
 
-    $(".color").on "click", (e) ->
-        $(this).parent().parent().children(".options").each ->
-            $(this).children().each ->
-                $(this).removeClass("select")
+    $("select").change ->
+        map = $(this).attr("map")
+        text = $(this).find(":selected").text()
+        $result = $(this).siblings(".result[map=#{map}]")
+        $result.text(text).show()
+        state = true
+        $parent = $(this).parent()
+        $parent.find(".result").each ->
+            state = false unless $(this).text().length > 0
+        $parent.parent().addClass("done") if state
+
+    $(".colors .color").on "click", (e) ->
+        $(this).siblings().each ->
+            $(this).removeClass("select")
         $(this).addClass("select")
         color = $(this).css("background")
         $hr = $(this).parent().siblings("hr")
@@ -73,10 +111,26 @@ require [
         $hr.slideDown()
         $shades.slideDown()
 
-        $light = $shades.children("#light")
-        $normal = $shades.children("#normal")
-        $dark = $shades.children("#dark")
+        $light = $shades.children("[data-id=light]")
+        $normal = $shades.children("[data-id=normal]")
+        $dark = $shades.children("[data-id=dark]")
 
         $normal.css("background", color)
         $light.css("background", luminance(color, 50))
         $dark.css("background", luminance(color, -50))
+
+    $(".shades .color").on "click", (e) ->
+        $(this).siblings().each ->
+            $(this).removeClass("select")
+        $(this).addClass("select")
+        $(this).parent().parent().addClass("done")
+
+    $("li").on "click", (e) ->
+        state = false
+        $("li:not([done-ignore])").each ->
+            state = true unless $(this).hasClass("done")
+        $(".submit").prop "disabled", state
+
+    $(".submit").on "click", (e) ->
+        $(".survey ul").children().each ->
+            console.log demand($(this))

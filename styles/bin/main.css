@@ -29,6 +29,7 @@ body .survey ul li {
   margin-bottom: 20px;
   padding: 5px;
   box-shadow: 0 5px 6px -6px #000;
+  position: relative;
 }
 html .survey ul li#assign,
 body .survey ul li#assign {
@@ -53,13 +54,48 @@ html .survey ul li:last-child,
 body .survey ul li:last-child {
   margin-bottom: 0;
 }
+html .survey ul li.done,
+body .survey ul li.done {
+  border-bottom: 10px solid #0c0;
+}
 html .survey ul li .clear,
 body .survey ul li .clear {
   clear: both;
 }
+html .survey ul li .submit,
+body .survey ul li .submit {
+  width: 100%;
+  border: 1px solid #000;
+  outline: none;
+  padding: 4px 0;
+  cursor: pointer;
+}
+html .survey ul li .submit[disabled],
+body .survey ul li .submit[disabled] {
+  opacity: 0.3;
+  cursor: none;
+}
 html .survey ul li header,
 body .survey ul li header {
   font-weight: bold;
+}
+html .survey ul li section select,
+body .survey ul li section select {
+  width: 324px;
+  border: 1px solid #000;
+  padding: 4px;
+  margin: 8px 0;
+  cursor: pointer;
+}
+html .survey ul li section .result,
+body .survey ul li section .result {
+  color: #000;
+  font-weight: bold;
+  border: 1px solid #000;
+  padding: 0 4px;
+  background: #eee;
+  border-radius: 5px;
+  margin: 0 2px;
 }
 html .survey ul li section .color,
 body .survey ul li section .color {
@@ -69,6 +105,59 @@ body .survey ul li section .color {
   float: left;
   cursor: pointer;
   border: 2px solid #000;
+}
+html .survey ul li section .color[data-id=red],
+body .survey ul li section .color[data-id=red] {
+  background: #c00;
+}
+html .survey ul li section .color[data-id=orange],
+body .survey ul li section .color[data-id=orange] {
+  background: #fa0;
+}
+html .survey ul li section .color[data-id=yellow],
+body .survey ul li section .color[data-id=yellow] {
+  background: #ee5;
+}
+html .survey ul li section .color[data-id=green],
+body .survey ul li section .color[data-id=green] {
+  background: #080;
+}
+html .survey ul li section .color[data-id=blue],
+body .survey ul li section .color[data-id=blue] {
+  background: #09f;
+}
+html .survey ul li section .color[data-id=purple],
+body .survey ul li section .color[data-id=purple] {
+  background: #86c;
+}
+html .survey ul li section .color[data-id=brown],
+body .survey ul li section .color[data-id=brown] {
+  background: #752;
+}
+html .survey ul li section .color[data-id=pink],
+body .survey ul li section .color[data-id=pink] {
+  background: #f7f;
+}
+html .survey ul li section .color[data-id=grey],
+body .survey ul li section .color[data-id=grey] {
+  background: #888;
+}
+html .survey ul li section .color[data-id=light],
+body .survey ul li section .color[data-id=light] {
+  background: #fff;
+}
+html .survey ul li section .color[data-id=normal],
+body .survey ul li section .color[data-id=normal] {
+  background: #ccc;
+}
+html .survey ul li section .color[data-id=dark],
+body .survey ul li section .color[data-id=dark] {
+  background: #000;
+}
+html .survey ul li section .select,
+body .survey ul li section .select {
+  border: 6px solid #fff;
+  outline: 1px solid #000;
 }
 html .survey ul li section.grid,
 body .survey ul li section.grid {
@@ -85,57 +174,5 @@ body .survey ul li section.grid .cell {
 }
 html .survey ul li section.grid .select,
 body .survey ul li section.grid .select {
-  background: #000;
-}
-html .survey ul li section .select,
-body .survey ul li section .select {
-  border: 6px solid #000;
-}
-html .survey ul li section #red,
-body .survey ul li section #red {
-  background: #c00;
-}
-html .survey ul li section #orange,
-body .survey ul li section #orange {
-  background: #fa0;
-}
-html .survey ul li section #yellow,
-body .survey ul li section #yellow {
-  background: #ee5;
-}
-html .survey ul li section #green,
-body .survey ul li section #green {
-  background: #080;
-}
-html .survey ul li section #blue,
-body .survey ul li section #blue {
-  background: #09f;
-}
-html .survey ul li section #purple,
-body .survey ul li section #purple {
-  background: #86c;
-}
-html .survey ul li section #brown,
-body .survey ul li section #brown {
-  background: #752;
-}
-html .survey ul li section #pink,
-body .survey ul li section #pink {
-  background: #f7f;
-}
-html .survey ul li section #grey,
-body .survey ul li section #grey {
-  background: #808080;
-}
-html .survey ul li section #light,
-body .survey ul li section #light {
-  background: #fff;
-}
-html .survey ul li section #normal,
-body .survey ul li section #normal {
-  background: #ccc;
-}
-html .survey ul li section #dark,
-body .survey ul li section #dark {
   background: #000;
 }

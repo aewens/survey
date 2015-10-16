@@ -14,7 +14,7 @@
   });
 
   require(["jquery", "firebase"], function($, Firebase) {
-    var i, j, luminance, ref;
+    var demand, i, j, luminance, ref;
     ref = new Firebase("https://zccount-survey.firebaseio.com/");
     luminance = function(color, lum) {
       var B, BB, G, GG, R, RR, rgb;
@@ -33,7 +33,35 @@
       BB = B.toString(16).length === 1 ? "0" + B.toString(16) : B.toString(16);
       return "#" + RR + GG + BB;
     };
-    $("li:not(#assign)").hide();
+    demand = function($el) {
+      var dmd, ret;
+      dmd = $el.attr("dmd");
+      if (dmd === "ignore") {
+        return ["\n"];
+      }
+      switch (dmd) {
+        case "name":
+          return [$el.find("#name").val()];
+        case "color":
+          ret = [];
+          $el.find(".select").each(function() {
+            return ret.push($(this).attr("data-id"));
+          });
+          return ret;
+        case "grid":
+          ret = [];
+          $el.find(".select").each(function() {
+            return ret.push($(this).attr("data-id"));
+          });
+          return ret;
+        case "select":
+          ret = [];
+          $el.find(".result").each(function() {
+            return ret.push($(this).text());
+          });
+          return ret;
+      }
+    };
     $("#name").on("keyup", function(e) {
       var disable;
       disable = !($(this).val().length === 8);
@@ -51,15 +79,36 @@
       }).addClass("cell").appendTo(".grid");
     }
     $(".cell").on("click", function(e) {
-      return $(this).toggleClass("select");
+      var $parent;
+      $parent = $(this).parent().parent();
+      $parent.removeClass("done");
+      $(this).toggleClass("select");
+      if ($parent.find(".select").length >= 3) {
+        return $parent.addClass("done");
+      }
     });
-    $(".shades, hr").hide();
-    return $(".color").on("click", function(e) {
+    $(".shades, hr, .result").hide();
+    $("select").change(function() {
+      var $parent, $result, map, state, text;
+      map = $(this).attr("map");
+      text = $(this).find(":selected").text();
+      $result = $(this).siblings(".result[map=" + map + "]");
+      $result.text(text).show();
+      state = true;
+      $parent = $(this).parent();
+      $parent.find(".result").each(function() {
+        if (!($(this).text().length > 0)) {
+          return state = false;
+        }
+      });
+      if (state) {
+        return $parent.parent().addClass("done");
+      }
+    });
+    $(".colors .color").on("click", function(e) {
       var $dark, $hr, $light, $normal, $shades, color;
-      $(this).parent().parent().children(".options").each(function() {
-        return $(this).children().each(function() {
-          return $(this).removeClass("select");
-        });
+      $(this).siblings().each(function() {
+        return $(this).removeClass("select");
       });
       $(this).addClass("select");
       color = $(this).css("background");
@@ -67,12 +116,34 @@
       $shades = $(this).parent().siblings(".shades");
       $hr.slideDown();
       $shades.slideDown();
-      $light = $shades.children("#light");
-      $normal = $shades.children("#normal");
-      $dark = $shades.children("#dark");
+      $light = $shades.children("[data-id=light]");
+      $normal = $shades.children("[data-id=normal]");
+      $dark = $shades.children("[data-id=dark]");
       $normal.css("background", color);
       $light.css("background", luminance(color, 50));
       return $dark.css("background", luminance(color, -50));
+    });
+    $(".shades .color").on("click", function(e) {
+      $(this).siblings().each(function() {
+        return $(this).removeClass("select");
+      });
+      $(this).addClass("select");
+      return $(this).parent().parent().addClass("done");
+    });
+    $("li").on("click", function(e) {
+      var state;
+      state = false;
+      $("li:not([done-ignore])").each(function() {
+        if (!$(this).hasClass("done")) {
+          return state = true;
+        }
+      });
+      return $(".submit").prop("disabled", state);
+    });
+    return $(".submit").on("click", function(e) {
+      return $(".survey ul").children().each(function() {
+        return console.log(demand($(this)));
+      });
     });
   });
 

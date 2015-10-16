@@ -5,52 +5,72 @@ link(href="styles/bin/main.css", rel="stylesheet")
 body
     .survey
         ul
-            li#assign
+            li#assign(dmd="name",done-ignore)
                 input#name(type="text",placeholder="Student ID (s1234567)")
-            li
+            li(dmd="color")
                 header 1. Pick a color
                 section.colors.options
-                    #red.color
-                    #orange.color
-                    #yellow.color
-                    #green.color
-                    #blue.color
-                    #purple.color
-                    #brown.color
-                    #pink.color
-                    #grey.color
+                    .color(data-id="red")
+                    .color(data-id="orange")
+                    .color(data-id="yellow")
+                    .color(data-id="green")
+                    .color(data-id="blue")
+                    .color(data-id="purple")
+                    .color(data-id="brown")
+                    .color(data-id="pink")
+                    .color(data-id="grey")
                 hr
                 section.shades.options
-                    #light.color
-                    #normal.color
-                    #dark.color
+                    .color(data-id="light")
+                    .color(data-id="normal")
+                    .color(data-id="dark")
                 .clear
-            li
+            li(dmd="color")
                 header 2. Pick another color
                 section.colors.options
-                    #red.color
-                    #orange.color
-                    #yellow.color
-                    #green.color
-                    #blue.color
-                    #purple.color
-                    #brown.color
-                    #pink.color
-                    #grey.color
+                    .color(data-id="red")
+                    .color(data-id="orange")
+                    .color(data-id="yellow")
+                    .color(data-id="green")
+                    .color(data-id="blue")
+                    .color(data-id="purple")
+                    .color(data-id="brown")
+                    .color(data-id="pink")
+                    .color(data-id="grey")
                 hr
                 section.shades.options
-                    #light.color
-                    #normal.color
-                    #dark.color
+                    .color(data-id="light")
+                    .color(data-id="normal")
+                    .color(data-id="dark")
                 .clear
-            li
+            li(dmd="grid")
                 header 3. Make an image
                 section.grid
                 .clear
-            li
-                header 4.
-                section Question
-            li
-                header 5.
-                section Question
+            li(dmd="select")
+                header 4. Pick one
+                section
+                    select(map="1")
+                        option(disabled,selected) -
+                        option Apple
+                        option Orange
+                        option Banana
+                    select(map="2")
+                        option(disabled,selected) -
+                        option Cake
+                        option Cookie
+                        option Brownie
+                    span.result(map="1")
+                    span.result(map="2")
+            li(dmd="select")
+                header 5. Pick one
+                section
+                    select(map="1")
+                        option(disabled,selected) -
+                        option Apple
+                        option Orange
+                        option Banana
+                    span.result(map="1")
+            li(dmd="ignore",done-ignore)
+                input.submit(type="button",value="Submit",disabled)
     script(data-main="bin/main", src="vendor/require.js")

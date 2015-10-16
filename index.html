@@ -5,63 +5,86 @@
 <body>
   <div class="survey">
     <ul>
-      <li id="assign">
+      <li id="assign" dmd="name" done-ignore>
         <input id="name" type="text" placeholder="Student ID (s1234567)">
       </li>
-      <li>
+      <li dmd="color">
         <header>1. Pick a color</header>
         <section class="colors options">
-          <div id="red" class="color"></div>
-          <div id="orange" class="color"></div>
-          <div id="yellow" class="color"></div>
-          <div id="green" class="color"></div>
-          <div id="blue" class="color"></div>
-          <div id="purple" class="color"></div>
-          <div id="brown" class="color"></div>
-          <div id="pink" class="color"></div>
-          <div id="grey" class="color"></div>
+          <div data-id="red" class="color"></div>
+          <div data-id="orange" class="color"></div>
+          <div data-id="yellow" class="color"></div>
+          <div data-id="green" class="color"></div>
+          <div data-id="blue" class="color"></div>
+          <div data-id="purple" class="color"></div>
+          <div data-id="brown" class="color"></div>
+          <div data-id="pink" class="color"></div>
+          <div data-id="grey" class="color"></div>
         </section>
         <hr>
         <section class="shades options">
-          <div id="light" class="color"></div>
-          <div id="normal" class="color"></div>
-          <div id="dark" class="color"></div>
+          <div data-id="light" class="color"></div>
+          <div data-id="normal" class="color"></div>
+          <div data-id="dark" class="color"></div>
         </section>
         <div class="clear"></div>
       </li>
-      <li>
+      <li dmd="color">
         <header>2. Pick another color</header>
         <section class="colors options">
-          <div id="red" class="color"></div>
-          <div id="orange" class="color"></div>
-          <div id="yellow" class="color"></div>
-          <div id="green" class="color"></div>
-          <div id="blue" class="color"></div>
-          <div id="purple" class="color"></div>
-          <div id="brown" class="color"></div>
-          <div id="pink" class="color"></div>
-          <div id="grey" class="color"></div>
+          <div data-id="red" class="color"></div>
+          <div data-id="orange" class="color"></div>
+          <div data-id="yellow" class="color"></div>
+          <div data-id="green" class="color"></div>
+          <div data-id="blue" class="color"></div>
+          <div data-id="purple" class="color"></div>
+          <div data-id="brown" class="color"></div>
+          <div data-id="pink" class="color"></div>
+          <div data-id="grey" class="color"></div>
         </section>
         <hr>
         <section class="shades options">
-          <div id="light" class="color"></div>
-          <div id="normal" class="color"></div>
-          <div id="dark" class="color"></div>
+          <div data-id="light" class="color"></div>
+          <div data-id="normal" class="color"></div>
+          <div data-id="dark" class="color"></div>
         </section>
         <div class="clear"></div>
       </li>
-      <li>
+      <li dmd="grid">
         <header>3. Make an image</header>
         <section class="grid"></section>
         <div class="clear"></div>
       </li>
-      <li>
-        <header>4.</header>
-        <section>Question</section>
+      <li dmd="select">
+        <header>4. Pick one</header>
+        <section>
+          <select map="1">
+            <option disabled selected>-</option>
+            <option>Apple</option>
+            <option>Orange</option>
+            <option>Banana</option>
+          </select>
+          <select map="2">
+            <option disabled selected>-</option>
+            <option>Cake</option>
+            <option>Cookie</option>
+            <option>Brownie</option>
+          </select><span map="1" class="result"></span><span map="2" class="result"></span>
+        </section>
       </li>
-      <li>
-        <header>5.</header>
-        <section>Question</section>
+      <li dmd="select">
+        <header>5. Pick one</header>
+        <section>
+          <select map="1">
+            <option disabled selected>-</option>
+            <option>Apple</option>
+            <option>Orange</option>
+            <option>Banana</option>
+          </select><span map="1" class="result"></span>
+        </section>
+      </li>
+      <li dmd="ignore" done-ignore>
+        <input type="button" value="Submit" disabled class="submit">
       </li>
     </ul>
   </div>
