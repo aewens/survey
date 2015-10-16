@@ -62,6 +62,7 @@
           return ret;
       }
     };
+    $("li:not(#assign)").hide();
     $("#name").on("keyup", function(e) {
       var disable;
       disable = !($(this).val().length === 8);
