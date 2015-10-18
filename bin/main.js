@@ -14,8 +14,9 @@
   });
 
   require(["jquery", "firebase"], function($, Firebase) {
-    var demand, i, j, luminance, ref;
+    var demand, i, j, luminance, ref, sref;
     ref = new Firebase("https://zccount-survey.firebaseio.com/");
+    sref = ref.child("students");
     luminance = function(color, lum) {
       var B, BB, G, GG, R, RR, rgb;
       rgb = color.replace(/\s/g, "").match(/^rgba?\((\d+),(\d+),(\d+)/i);
@@ -42,7 +43,13 @@
       switch (dmd) {
         case "name":
           return [$el.find("#name").val()];
-        case "color":
+        case "color1":
+          ret = [];
+          $el.find(".select").each(function() {
+            return ret.push($(this).attr("data-id"));
+          });
+          return ret;
+        case "color2":
           ret = [];
           $el.find(".select").each(function() {
             return ret.push($(this).attr("data-id"));
@@ -54,7 +61,13 @@
             return ret.push($(this).attr("data-id"));
           });
           return ret;
-        case "select":
+        case "select1":
+          ret = [];
+          $el.find(".result").each(function() {
+            return ret.push($(this).text());
+          });
+          return ret;
+        case "select2":
           ret = [];
           $el.find(".result").each(function() {
             return ret.push($(this).text());
@@ -62,7 +75,6 @@
           return ret;
       }
     };
-    $("li:not(#assign)").hide();
     $("#name").on("keyup", function(e) {
       var disable;
       disable = !($(this).val().length === 8);
@@ -142,9 +154,17 @@
       return $(".submit").prop("disabled", state);
     });
     return $(".submit").on("click", function(e) {
-      return $(".survey ul").children().each(function() {
-        return console.log(demand($(this)));
+      var data, student;
+      $("ul").children().each(function() {
+        return $(this).removeClass("done");
       });
+      $(this).addClass("done");
+      student = demand($("[dmd=name]"))[0];
+      data = {};
+      $(".survey ul").children(":not([done-ignore])").each(function() {
+        return data["" + ($(this).attr("dmd"))] = demand($(this));
+      });
+      return sref.child(student).set(data);
     });
   });
 

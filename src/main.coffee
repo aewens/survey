@@ -11,6 +11,7 @@ require [
     "firebase"
 ], ($, Firebase) ->
     ref = new Firebase("https://zccount-survey.firebaseio.com/")
+    sref = ref.child("students")
 
     luminance = (color, lum) ->
         rgb = color.replace(/\s/g,"").match(/^rgba?\((\d+),(\d+),(\d+)/i)
@@ -49,7 +50,12 @@ require [
         switch dmd
             when "name"
                 return [$el.find("#name").val()]
-            when "color"
+            when "color1"
+                ret = []
+                $el.find(".select").each ->
+                    ret.push $(this).attr("data-id")
+                return ret
+            when "color2"
                 ret = []
                 $el.find(".select").each ->
                     ret.push $(this).attr("data-id")
@@ -59,15 +65,18 @@ require [
                 $el.find(".select").each ->
                     ret.push $(this).attr("data-id")
                 return ret
-            when "select"
+            when "select1"
+                ret = []
+                $el.find(".result").each ->
+                    ret.push $(this).text()
+                return ret
+            when "select2"
                 ret = []
                 $el.find(".result").each ->
                     ret.push $(this).text()
                 return ret
 
-    # done = ($el) ->
-
-    $("li:not(#assign)").hide()
+    # $("li:not(#assign)").hide()
 
     $("#name").on "keyup", (e) ->
         disable = !($(this).val().length is 8)
@@ -132,5 +141,10 @@ require [
         $(".submit").prop "disabled", state
 
     $(".submit").on "click", (e) ->
-        $(".survey ul").children().each ->
-            console.log demand($(this))
+        $("ul").children().each -> $(this).removeClass("done")
+        $(this).addClass("done")
+        student = demand($("[dmd=name]"))[0]
+        data = {}
+        $(".survey ul").children(":not([done-ignore])").each ->
+            data["#{$(this).attr("dmd")}"] = demand($(this))
+        sref.child(student).set(data)

@@ -7,7 +7,7 @@ body
         ul
             li#assign(dmd="name",done-ignore)
                 input#name(type="text",placeholder="Student ID (s1234567)")
-            li(dmd="color")
+            li(dmd="color1")
                 header 1. Pick a color
                 section.colors.options
                     .color(data-id="red")
@@ -25,7 +25,7 @@ body
                     .color(data-id="normal")
                     .color(data-id="dark")
                 .clear
-            li(dmd="color")
+            li(dmd="color2")
                 header 2. Pick another color
                 section.colors.options
                     .color(data-id="red")
@@ -47,7 +47,7 @@ body
                 header 3. Make an image
                 section.grid
                 .clear
-            li(dmd="select")
+            li(dmd="select1")
                 header 4. Pick one
                 section
                     select(map="1")
@@ -62,7 +62,7 @@ body
                         option Brownie
                     span.result(map="1")
                     span.result(map="2")
-            li(dmd="select")
+            li(dmd="select2")
                 header 5. Pick one
                 section
                     select(map="1")
