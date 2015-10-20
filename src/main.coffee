@@ -49,7 +49,7 @@ require [
 
         switch dmd
             when "name"
-                return [$el.find("#name").val()]
+                return [$el.find("#name").val().toLowerCase()]
             when "color1"
                 ret = []
                 $el.find(".select").each ->

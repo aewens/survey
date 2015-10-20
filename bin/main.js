@@ -42,7 +42,7 @@
       }
       switch (dmd) {
         case "name":
-          return [$el.find("#name").val()];
+          return [$el.find("#name").val().toLowerCase()];
         case "color1":
           ret = [];
           $el.find(".select").each(function() {
