@@ -47,30 +47,20 @@ require [
         dmd = $el.attr("dmd")
         return ["\n"] if dmd is "ignore"
 
-        switch dmd
-            when "name"
+        switch true
+            when /name/.test(dmd)
                 return [$el.find("#name").val().toLowerCase()]
-            when "color1"
+            when /color\d/.test(dmd)
                 ret = []
                 $el.find(".select").each ->
                     ret.push $(this).attr("data-id")
                 return ret
-            when "color2"
+            when /grid/.test(dmd)
                 ret = []
                 $el.find(".select").each ->
                     ret.push $(this).attr("data-id")
                 return ret
-            when "grid"
-                ret = []
-                $el.find(".select").each ->
-                    ret.push $(this).attr("data-id")
-                return ret
-            when "select1"
-                ret = []
-                $el.find(".result").each ->
-                    ret.push $(this).text()
-                return ret
-            when "select2"
+            when /select\d/.test(dmd)
                 ret = []
                 $el.find(".result").each ->
                     ret.push $(this).text()

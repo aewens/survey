@@ -40,34 +40,22 @@
       if (dmd === "ignore") {
         return ["\n"];
       }
-      switch (dmd) {
-        case "name":
+      switch (true) {
+        case /name/.test(dmd):
           return [$el.find("#name").val().toLowerCase()];
-        case "color1":
+        case /color\d/.test(dmd):
           ret = [];
           $el.find(".select").each(function() {
             return ret.push($(this).attr("data-id"));
           });
           return ret;
-        case "color2":
+        case /grid/.test(dmd):
           ret = [];
           $el.find(".select").each(function() {
             return ret.push($(this).attr("data-id"));
           });
           return ret;
-        case "grid":
-          ret = [];
-          $el.find(".select").each(function() {
-            return ret.push($(this).attr("data-id"));
-          });
-          return ret;
-        case "select1":
-          ret = [];
-          $el.find(".result").each(function() {
-            return ret.push($(this).text());
-          });
-          return ret;
-        case "select2":
+        case /select\d/.test(dmd):
           ret = [];
           $el.find(".result").each(function() {
             return ret.push($(this).text());
