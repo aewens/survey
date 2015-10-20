@@ -137,4 +137,6 @@ require [
         $(".survey ul").children(":not([done-ignore])").each ->
             data["#{$(this).attr("dmd")}"] = demand($(this))
         sref.child(student).set(data)
-        window.location.reload()
+        # window.location.reload()
+        $("li:not([done-ignore])").hide()
+        $(this).addClass("done")

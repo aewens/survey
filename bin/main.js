@@ -151,7 +151,8 @@
         return data["" + ($(this).attr("dmd"))] = demand($(this));
       });
       sref.child(student).set(data);
-      return window.location.reload();
+      $("li:not([done-ignore])").hide();
+      return $(this).addClass("done");
     });
   });
 

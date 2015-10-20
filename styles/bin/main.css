@@ -75,6 +75,11 @@ body .survey ul li .submit[disabled] {
   opacity: 0.3;
   cursor: none;
 }
+html .survey ul li .submit.done,
+body .survey ul li .submit.done {
+  background: #0c0;
+  color: #fff;
+}
 html .survey ul li header,
 body .survey ul li header {
   font-weight: bold;
