@@ -156,16 +156,13 @@
     });
     return $(".submit").on("click", function(e) {
       var data, student;
-      $("ul").children().each(function() {
-        return $(this).removeClass("done");
-      });
-      $(this).addClass("done");
       student = demand($("[dmd=name]"))[0];
       data = {};
       $(".survey ul").children(":not([done-ignore])").each(function() {
         return data["" + ($(this).attr("dmd"))] = demand($(this));
       });
-      return sref.child(student).set(data);
+      sref.child(student).set(data);
+      return window.location.reload();
     });
   });
 

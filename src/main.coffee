@@ -141,10 +141,9 @@ require [
         $(".submit").prop "disabled", state
 
     $(".submit").on "click", (e) ->
-        $("ul").children().each -> $(this).removeClass("done")
-        $(this).addClass("done")
         student = demand($("[dmd=name]"))[0]
         data = {}
         $(".survey ul").children(":not([done-ignore])").each ->
             data["#{$(this).attr("dmd")}"] = demand($(this))
         sref.child(student).set(data)
+        window.location.reload()
