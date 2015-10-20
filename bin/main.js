@@ -63,10 +63,12 @@
           return ret;
       }
     };
+    $("li:not(#assign)").hide();
     $("#name").on("keyup", function(e) {
-      var disable;
-      disable = !($(this).val().length === 8);
-      if (disable) {
+      var disable1, disable2;
+      disable1 = !($(this).val().length === 8);
+      disable2 = !(/^\w\d{7}$/.test($(this).val()));
+      if (disable1 && disable2) {
         $("#name").removeClass("active");
         return $("li:not(#assign)").slideUp();
       } else {
@@ -92,7 +94,7 @@
     $("select").change(function() {
       var $parent, $result, map, state, text;
       map = $(this).attr("map");
-      text = $(this).find(":selected").text();
+      text = $(this).find(":selected").text().substring(0, 4);
       $result = $(this).siblings(".result[map=" + map + "]");
       $result.text(text).show();
       state = true;

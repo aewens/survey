@@ -66,11 +66,12 @@ require [
                     ret.push $(this).text()
                 return ret
 
-    # $("li:not(#assign)").hide()
+    $("li:not(#assign)").hide()
 
     $("#name").on "keyup", (e) ->
-        disable = !($(this).val().length is 8)
-        if disable
+        disable1 = !($(this).val().length is 8)
+        disable2 = !(/^\w\d{7}$/.test($(this).val()))
+        if disable1 and disable2
             $("#name").removeClass("active")
             $("li:not(#assign)").slideUp()
         else
@@ -90,7 +91,7 @@ require [
 
     $("select").change ->
         map = $(this).attr("map")
-        text = $(this).find(":selected").text()
+        text = $(this).find(":selected").text().substring(0,4)
         $result = $(this).siblings(".result[map=#{map}]")
         $result.text(text).show()
         state = true
