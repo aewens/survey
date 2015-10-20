@@ -137,6 +137,7 @@
       var state;
       state = false;
       $("li:not([done-ignore])").each(function() {
+        console.log($(this).attr("dmd"));
         if (!$(this).hasClass("done")) {
           return state = true;
         }

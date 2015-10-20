@@ -128,6 +128,7 @@ require [
     $("li").on "click", (e) ->
         state = false
         $("li:not([done-ignore])").each ->
+            console.log $(this).attr("dmd")
             state = true unless $(this).hasClass("done")
         $(".submit").prop "disabled", state
 
