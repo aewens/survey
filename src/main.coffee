@@ -66,7 +66,7 @@ require [
                     ret.push $(this).text()
                 return ret
 
-    $("li:not(#assign)").hide()
+    # $("li:not(#assign)").hide()
 
     $("#name").on "keyup", (e) ->
         disable = !($(this).val().length is 8)

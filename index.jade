@@ -1,5 +1,8 @@
 doctype html
 title Survey
+meta(charset="utf-8")
+meta(http-equiv="x-ua-compatible",content="ie=edge")
+meta(name="viewport",content="width=device-width, initial-scale=1")
 link(href="https://cdn.jsdelivr.net/font-hack/2.013/css/hack.min.css",rel="stylesheet")
 link(href="styles/bin/main.css", rel="stylesheet")
 body
@@ -48,28 +51,71 @@ body
                 section.grid
                 .clear
             li(dmd="select1")
-                header 4. Pick one
+                header 4. Which do you prefer?
                 section
                     select(map="1")
                         option(disabled,selected) -
-                        option Apple
-                        option Orange
-                        option Banana
+                        option Hot
+                        option Cold
                     select(map="2")
                         option(disabled,selected) -
-                        option Cake
-                        option Cookie
-                        option Brownie
+                        option Winter
+                        option Spring
+                        option Summer
+                        option Autumn
+                    select(map="3")
+                        option(disabled,selected) -
+                        option Day
+                        option Night
                     span.result(map="1")
                     span.result(map="2")
+                    span.result(map="3")
             li(dmd="select2")
-                header 5. Pick one
+                header 6. Which do you prefer?
                 section
                     select(map="1")
                         option(disabled,selected) -
-                        option Apple
-                        option Orange
-                        option Banana
+                        option Cake
+                        option Pie
+                    select(map="2")
+                        option(disabled,selected) -
+                        option Cookie
+                        option Brownie
+                    select(map="3")
+                        option(disabled,selected) -
+                        option Breakfast
+                        option Lunch
+                        option Dinner
+                    span.result(map="1")
+                    span.result(map="2")
+                    span.result(map="3")
+            li(dmd="select3")
+                header 7. Which would you doodle with?
+                section
+                    select(map="1")
+                        option(disabled,selected) -
+                        option Pen
+                        option Pencil
+                        option Mechanical
+                        option Crayon
+                        option Brush
+                        option Marker
+                        option Stylus
+                    span.result(map="1")
+            li(dmd="select3")
+                header 8. What scares you <u>most</u>?
+                section
+                    select(map="1")
+                        option(disabled,selected) -
+                        option Spiders
+                        option Snakes
+                        option Heights
+                        option Public Speaking
+                        option Crowds
+                        option Small spaces
+                        option Dark
+                        option Fire
+                        option Supernatural
                     span.result(map="1")
             li(dmd="ignore",done-ignore)
                 input.submit(type="button",value="Submit",disabled)
