@@ -66,6 +66,12 @@ require [
                     ret.push $(this).text()
                 return ret
 
+    done = ->
+        state = false
+        $("li:not([done-ignore])").each ->
+            state = true unless $(this).hasClass("done")
+        $(".submit").prop "disabled", state
+
     $("li:not(#assign)").hide()
 
     $("#name").on "keyup", (e) ->
@@ -77,7 +83,6 @@ require [
         else
             $("#name").addClass("active")
             $(this).parent().siblings().slideDown()
-            $(this).blur()
 
     for i in [0...36]
         $("<div/>",{"data-id":i}).addClass("cell").appendTo(".grid")
@@ -99,9 +104,8 @@ require [
         $parent = $(this).parent()
         $parent.find(".result").each ->
             state = false unless $(this).text().length > 0
-        if state
-            $parent.parent().addClass("done")
-            $(this).blur()
+        $parent.parent().addClass("done") if state
+        done()
 
     $(".colors .color").on "click", (e) ->
         $(this).siblings().each ->
@@ -129,10 +133,7 @@ require [
         $(this).parent().parent().addClass("done")
 
     $("li").on "click", (e) ->
-        state = false
-        $("li:not([done-ignore])").each ->
-            state = true unless $(this).hasClass("done")
-        $(".submit").prop "disabled", state
+        done()
 
     $(".submit").on "click", (e) ->
         student = demand($("[dmd=name]"))[0]
