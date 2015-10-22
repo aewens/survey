@@ -77,6 +77,7 @@ require [
         else
             $("#name").addClass("active")
             $(this).parent().siblings().slideDown()
+            $(this).blur()
 
     for i in [0...36]
         $("<div/>",{"data-id":i}).addClass("cell").appendTo(".grid")
@@ -128,7 +129,6 @@ require [
     $("li").on "click", (e) ->
         state = false
         $("li:not([done-ignore])").each ->
-            console.log $(this).attr("dmd")
             state = true unless $(this).hasClass("done")
         $(".submit").prop "disabled", state
 
@@ -138,6 +138,5 @@ require [
         $(".survey ul").children(":not([done-ignore])").each ->
             data["#{$(this).attr("dmd")}"] = demand($(this))
         sref.child(student).set(data)
-        # window.location.reload()
         $("li:not([done-ignore])").hide()
         $(this).addClass("done")
