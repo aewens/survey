@@ -106,7 +106,8 @@
         }
       });
       if (state) {
-        return $parent.parent().addClass("done");
+        $parent.parent().addClass("done");
+        return $(this).blur();
       }
     });
     $(".colors .color").on("click", function(e) {

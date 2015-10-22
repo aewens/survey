@@ -99,7 +99,9 @@ require [
         $parent = $(this).parent()
         $parent.find(".result").each ->
             state = false unless $(this).text().length > 0
-        $parent.parent().addClass("done") if state
+        if state
+            $parent.parent().addClass("done")
+            $(this).blur()
 
     $(".colors .color").on "click", (e) ->
         $(this).siblings().each ->
